@@ -84,6 +84,15 @@ export function AuthProvider({ children }) {
     toast.success('Logged out successfully')
   }
 
+  const deleteUser = (userId) => {
+    if (userId === user.id) {
+      toast.error("You cannot delete your own admin account")
+      return
+    }
+    setAllUsers(prev => prev.filter(u => u.id !== userId))
+    toast.success("User removed successfully")
+  }
+
   const updateProfile = (updates) => {
     const updatedUser = { ...user, ...updates }
     setUser(updatedUser)
@@ -94,7 +103,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={{
-      user, loading, login, signup, logout, updateProfile,
+      user, loading, login, signup, logout, updateProfile, deleteUser,
       allUsers, isAdmin: user?.role === 'admin',
     }}>
       {children}

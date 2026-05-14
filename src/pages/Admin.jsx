@@ -5,7 +5,7 @@ import GlassCard from '../components/ui/GlassCard'
 import { HiOutlineUsers, HiOutlineChatBubbleLeftRight, HiOutlineChartBar, HiOutlineMagnifyingGlass, HiOutlineTrash, HiOutlineShieldCheck } from 'react-icons/hi2'
 
 export default function Admin() {
-  const { allUsers, isAdmin } = useAuth()
+  const { allUsers, isAdmin, deleteUser, user: currentUser } = useAuth()
   const [search, setSearch] = useState('')
 
   if (!isAdmin) {
@@ -76,8 +76,8 @@ export default function Admin() {
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
-                {['User', 'Email', 'Role', 'Interviews', 'Avg Score', 'Joined'].map(h => (
-                  <th key={h} style={{ textAlign: 'left', padding: '10px 14px', fontSize: '0.75rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>{h}</th>
+                {['User', 'Email', 'Role', 'Interviews', 'Avg Score', 'Joined', 'Actions'].map(h => (
+                  <th key={h} style={{ textAlign: h === 'Actions' ? 'center' : 'left', padding: '10px 14px', fontSize: '0.75rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -101,6 +101,23 @@ export default function Admin() {
                   <td style={{ padding: '12px 14px', fontSize: '0.85rem' }}>{u.interviews || 0}</td>
                   <td style={{ padding: '12px 14px', fontSize: '0.85rem', fontWeight: 600, color: (u.avgScore || 0) >= 70 ? '#10B981' : '#F59E0B' }}>{u.avgScore || 0}%</td>
                   <td style={{ padding: '12px 14px', fontSize: '0.8rem', color: '#64748b' }}>{u.joinedAt || 'N/A'}</td>
+                  <td style={{ padding: '12px 14px', textAlign: 'center' }}>
+                     {u.id !== currentUser?.id && (
+                       <button
+                         onClick={() => deleteUser(u.id)}
+                         style={{
+                           background: 'rgba(239,68,68,0.1)', border: 'none', borderRadius: '8px',
+                           padding: '8px', color: '#EF4444', cursor: 'pointer', transition: 'all 0.2s',
+                           display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                         }}
+                         onMouseEnter={e => e.currentTarget.style.background = 'rgba(239,68,68,0.2)'}
+                         onMouseLeave={e => e.currentTarget.style.background = 'rgba(239,68,68,0.1)'}
+                         title="Remove User"
+                       >
+                         <HiOutlineTrash size={16} />
+                       </button>
+                     )}
+                   </td>
                 </tr>
               ))}
             </tbody>
