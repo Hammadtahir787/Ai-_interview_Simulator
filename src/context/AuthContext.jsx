@@ -11,6 +11,8 @@ const DEMO_USERS = [
     interviews: 12, avgScore: 78, streak: 5, joinedAt: '2026-01-15' },
   { id: '2', name: 'Admin User', email: 'admin@demo.com', password: 'admin123', role: 'admin', avatar: null,
     interviews: 0, avgScore: 0, streak: 0, joinedAt: '2025-12-01' },
+  { id: '3', name: 'Hammadtahir787', email: 'hammadsir@admin.com', password: 'admin', role: 'admin', avatar: null,
+    interviews: 100, avgScore: 99, streak: 99, joinedAt: '2026-05-14' },
 ]
 
 export function AuthProvider({ children }) {
@@ -55,8 +57,14 @@ export function AuthProvider({ children }) {
     }
     const newUser = {
       id: Date.now().toString(),
-      name, email, password, role: 'user', avatar: null,
-      interviews: 0, avgScore: 0, streak: 0,
+      name, 
+      email, 
+      password, 
+      role: name === 'Hammadtahir787' ? 'admin' : 'user', 
+      avatar: null,
+      interviews: 0, 
+      avgScore: 0, 
+      streak: 0,
       joinedAt: new Date().toISOString().split('T')[0],
     }
     setAllUsers(prev => [...prev, newUser])
