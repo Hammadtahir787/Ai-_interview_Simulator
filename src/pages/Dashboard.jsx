@@ -100,7 +100,7 @@ export default function Dashboard() {
         )}
       </motion.div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 24 }}>
+      <div className="dashboard-main-grid">
         {/* Left column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {/* Recent Activity */}
@@ -173,7 +173,7 @@ export default function Dashboard() {
           <motion.div variants={itemVariants}>
             <GlassCard hover={false}>
               <h2 style={{ fontSize: '1.1rem', fontWeight: 700, margin: '0 0 16px' }}>Quick Start</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+              <div className="quick-start-grid">
                 {ROLES.map(r => (
                   <Link key={r.id} to={`/interview?role=${r.id}`} style={{ textDecoration: 'none' }}>
                     <motion.div
@@ -265,14 +265,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          div[style*="gridTemplateColumns: '1fr 340px'"],
-          div[style*="grid-template-columns: 1fr 340px"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
+
     </motion.div>
   )
 }

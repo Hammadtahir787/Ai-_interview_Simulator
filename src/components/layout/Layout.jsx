@@ -7,17 +7,10 @@ export default function Layout() {
     <div style={{ minHeight: '100vh' }}>
       <div className="animated-bg" />
       <Sidebar />
-      <main
-        className="main-content"
-        style={{
-          marginLeft: 260,
-          minHeight: '100vh',
-          padding: '32px',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        <Outlet />
+      <main className="main-content">
+        <div className="content-inner">
+          <Outlet />
+        </div>
       </main>
     </div>
   )
