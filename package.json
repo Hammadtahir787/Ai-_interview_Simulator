@@ -2,7 +2,7 @@
   "name": "ai-interview-simulator",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://github.com/hamma/ai-interview-simulator",
+  "homepage": "https://github.com/Hammadtahir787/ai-interview-simulator",
   "type": "module",
   "scripts": {
     "dev": "vite",
