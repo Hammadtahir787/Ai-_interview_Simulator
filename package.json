@@ -1,8 +1,8 @@
 {
-  "name": "ai-interview-simulator",
+  "name": "Ai-_interview_Simulator",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://github.com/Hammadtahir787/ai-interview-simulator",
+  "homepage": "https://github.com/Hammadtahir787/Ai-_interview_Simulator",
   "type": "module",
   "scripts": {
     "dev": "vite",
